@@ -4,7 +4,7 @@ services:
   app01:
     build: .
     deploy:
-      replicas: 3   # levanta 3 contenedores para balanceo
+      replicas: 3
     networks:
       - appnet
 
