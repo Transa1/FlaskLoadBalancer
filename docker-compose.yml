@@ -1,0 +1,24 @@
+version: "3.9"
+
+services:
+  app01:
+    build: .
+    deploy:
+      replicas: 3   # levanta 3 contenedores para balanceo
+    networks:
+      - appnet
+
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "9090:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - app01
+    networks:
+      - appnet
+
+networks:
+  appnet:
+
